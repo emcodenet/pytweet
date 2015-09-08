@@ -7,3 +7,5 @@ Utterly pointless, but fun in a weird way I guess...  :D
 Requires _Tweepy_ (pip install tweepy)
 
 Shoutout **@dredonja** for the initial idea!!
+
+**Usage:** python pytweet.py
