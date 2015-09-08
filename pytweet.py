@@ -14,7 +14,7 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-stuff = api.user_timeline(screen_name = 'taylorotwell', count = 14000, include_rts = True)
+stuff = api.user_timeline(screen_name = 'twitter-username-to-get-tweets-from', count = 14000, include_rts = True)
 
 colors = ['grey','red','green','yellow','blue','magenta','cyan','white']
 
