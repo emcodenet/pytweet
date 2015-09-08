@@ -6,4 +6,4 @@ Utterly pointless, but fun in a weird way I guess...  :D
 
 Requires _Tweepy_ (pip install tweepy)
 
-Shoutout _@dredonja_ for the initial idea!!
+Shoutout **@dredonja** for the initial idea!!
