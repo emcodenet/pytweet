@@ -4,6 +4,6 @@ Colorfoul tweets from your favourite account on your terminal, curtesy of python
 
 Utterly pointless, but fun in a weird way I guess...  :D
 
-Requires Tweepy (pip install tweepy)
+Requires _Tweepy_ (pip install tweepy)
 
-Shoutout @dredonja for the initial idea!!
+Shoutout _@dredonja_ for the initial idea!!
