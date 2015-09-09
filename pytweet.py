@@ -4,23 +4,41 @@ import sys
 import time
 from termcolor import colored, cprint
 import tweepy
+from tweepy import StreamListener
+from tweepy import Stream
+import json
 
-# get you keys when you make an app on https://apps.twitter.com/
-CONSUMER_KEY = 'xxx'
-CONSUMER_SECRET = 'xxx'
-ACCESS_KEY = 'xxx'
-ACCESS_SECRET = 'xxx'
+CONSUMER_KEY = 'xxxxxxxxx'
+CONSUMER_SECRET = 'xxxxxxxxx'
+ACCESS_KEY = 'xxxxxxxxxxxx'
+ACCESS_SECRET = 'xxxxxxxxxxxxx'
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.API(auth)
-
-stuff = api.user_timeline(screen_name = 'twitter-username-to-get-tweets-from', count = 14000, include_rts = True)
 
 colors = ['grey','red','green','yellow','blue','magenta','cyan','white']
 
+# This is the listener, resposible for receiving data
+class StdOutListener(tweepy.StreamListener):
 
-for tweet in stuff:
-	sys.stdout.write( colored( tweet.text + ' ' , colors[randint(0,7)] )  ),
-    	sys.stdout.flush()
-	time.sleep(1)
+    def on_data(self, data):
+        # Twitter returns data in JSON format - we need to decode it first
+        decoded = json.loads(data)
 
+        # Also, we convert UTF-8 to ASCII ignoring all bad characters sent by users
+        print ( colored( '@%s: %s' % (decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore'))  , colors[randint(0,7)] ) )
+        print ('')
+        return True
+
+    def on_error(self, status):
+        print (colored( status, colors[randint(0,7)] ) )
+
+if __name__ == '__main__':
+    l = StdOutListener()
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+
+    stream = tweepy.Stream(auth, l)
+    stream.filter(track=['php'])
+
+		
+#streamer core code borrowed from http://code.runnable.com/Us9rrMiTWf9bAAW3/how-to-stream-data-from-twitter-with-tweepy-for-python
