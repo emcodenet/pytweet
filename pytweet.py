@@ -39,6 +39,6 @@ if __name__ == '__main__':
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 
     stream = tweepy.Stream(auth, l)
-    stream.filter(track=['programming', 'batman'])
+    stream.filter(track=['batman'])
 
 #streamer core code borrowed from http://code.runnable.com/Us9rrMiTWf9bAAW3/how-to-stream-data-from-twitter-with-tweepy-for-python
