@@ -25,8 +25,9 @@ class StdOutListener(tweepy.StreamListener):
         decoded = json.loads(data)
 
         # Also, we convert UTF-8 to ASCII ignoring all bad characters sent by users
-        print ( colored( '@%s: %s' % (decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore'))  , colors[randint(0,7)] ) )
+        print ( colored( '%s' % (decoded['text'].encode('ascii', 'ignore'))  , colors[randint(0,7)] ) )
         print ('')
+	time.sleep(2)
         return True
 
     def on_error(self, status):
@@ -38,7 +39,6 @@ if __name__ == '__main__':
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 
     stream = tweepy.Stream(auth, l)
-    stream.filter(track=['php'])
+    stream.filter(track=['programming', 'batman'])
 
-		
 #streamer core code borrowed from http://code.runnable.com/Us9rrMiTWf9bAAW3/how-to-stream-data-from-twitter-with-tweepy-for-python
